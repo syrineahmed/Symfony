@@ -1,0 +1,47 @@
+{% extends 'reclamation/base-back.html.twig' %}
+
+{% block title %}Reclamation {% endblock %}
+
+{% block body %}
+    <div>
+        <h1>Espace de Reclamation</h1>
+
+        <p>Bienvenue cher(e) patient(e)</p>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>IdRec</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Description</th>
+                <th>Etat</th>
+                <th>Date</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for reclamation in reclamations %}
+            <tr>
+                <td>{{ reclamation.idRec }}</td>
+                <td>{{ reclamation.username }}</td>
+                <td>{{ reclamation.email }}</td>
+                <td>{{ reclamation.description }}</td>
+                <td>{{ reclamation.etat }}</td>
+                <td>{{ reclamation.date ? reclamation.date|date('Y-m-d') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_reclamation_show', {'idRec': reclamation.idRec}) }}">show</a>
+                    <a href="{{ path('app_reclamation_edit', {'idRec': reclamation.idRec}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_reclamation_new') }}">Create new</a>
+{% endblock %}
