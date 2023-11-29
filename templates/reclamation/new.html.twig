@@ -1,0 +1,40 @@
+{% extends 'Client/base-front.html.twig' %}
+
+{% block body %}
+    <div class="container"  >
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="modal-title">Make a Reclamation</h5>
+                    </div>
+                    <div class="card-body">
+                        <form action="{{ path('app_reclamation_new') }}" method="post">
+                            {{ form_start(form) }}
+                            <div class="form-group">
+                                {{ form_row(form.sujet, {'attr': {'class': 'form-control', 'placeholder': 'Subject'}}) }}
+                            </div>
+                            <div class="form-group">
+                                {{ form_row(form.email, {'attr': {'class': 'form-control', 'placeholder': 'Email'}}) }}
+                            </div>
+                            <div class="form-group">
+                                {{ form_row(form.description, {'attr': {'class': 'form-control', 'rows': 5, 'placeholder': 'Description'}}) }}
+                            </div>
+                            <div class="form-group">
+                                {{ form_row(form.etat, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                            <div class="form-group">
+                                {{ form_row(form.date, {'attr': {'class': 'form-control', 'placeholder': 'Date...'}}) }}
+                            </div>
+
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary">Confirm</button>
+                            </div>
+                            {{ form_end(form) }}
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

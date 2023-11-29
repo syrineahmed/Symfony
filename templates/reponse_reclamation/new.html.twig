@@ -1,0 +1,43 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Reponse de Reclamation{% endblock %}
+
+{% block body %}
+    <div class="container mt-4">
+        <h1 class="mb-4">Reponse Reclamation</h1>
+
+        <div class="row">
+            <div class="col-md-6">
+                {{ include('reponse_reclamation/_form.html.twig') }}
+                <a href="{{ path('app_reclamation_index') }}" class="btn btn-secondary mt-3">Back to List</a>
+            </div>
+
+            <div class="col-md-6">
+                <table class="table">
+                    <tbody>
+                    <tr>
+                        <th>Sujet</th>
+                        <td>{{ reclamation.sujet }}</td>
+                    </tr>
+                    <tr>
+                        <th>Email</th>
+                        <td>{{ reclamation.email }}</td>
+                    </tr>
+                    <tr>
+                        <th>Description</th>
+                        <td>{{ reclamation.description }}</td>
+                    </tr>
+                    <tr>
+                        <th>Etat</th>
+                        <td>{{ reclamation.etat }}</td>
+                    </tr>
+                    <tr>
+                        <th>Date</th>
+                        <td>{{ reclamation.date ? reclamation.date|date('Y-m-d') : '' }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
