@@ -1,0 +1,53 @@
+{% extends 'front-base.html.twig' %}
+{% block body %}
+    <link rel="stylesheet" href="{{ asset('reglee.css') }}">
+
+    <div class="table-container">
+        <table border="2">
+            <tr>
+
+
+                <th class="entet">Nom_Service</th>
+                <th class="entet">Id_Patient</th>
+                <th class="entet">Note</th>
+                <th class="entet">Commentaire</th>
+
+
+                <th class="entet">Date_Commentaire</th>
+            </tr>
+
+
+           {#   {% for commentaire in commentaires %}
+                <tbody>
+                <tr>
+
+
+                    <td>{{ commentaire.getNomService }}</td>
+                    <td> {{ commentaire.getIdPatient }}</td>
+                    <td>{{ commentaire.getNote }}</td>
+                    <td>{{ commentaire.getCommentaire}}</td>
+
+                    <td>{{ commentaire.getDateAvis|date('Y-m-d')}}</td>
+
+
+                </tr>
+
+                </tbody>
+
+            {% endfor %}
+            <tr>
+                <div class="pagination-container">
+                    {{ knp_pagination_render(commentaires) }}
+                </div>
+            </tr>#}
+        </table>
+        <td class="bout text-center"> {# Ajout de la classe pour centrer le bouton #}
+            <a href="{{ path('new_comm') }}" style="display: inline-block; padding: 6px 12px; margin-bottom: 0; font-size: 14px; font-weight: 400; line-height: 1.42857143; text-align: center; white-space: nowrap; vertical-align: middle; cursor: pointer;  border-radius: 4px; color: #fff; background-color: #337ab7; border-color: #2e6da4;">Ajouter nouveau commentaire</a>
+        </td>
+    </div>
+
+
+{% endblock %}
+
+
+

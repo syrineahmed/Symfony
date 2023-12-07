@@ -1,0 +1,49 @@
+{% extends 'base-bak.html.twig' %}
+{% block title %}Ajouter Service{% endblock %}
+
+{% block body %}
+    <link rel="stylesheet" href="{{ asset('https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css') }}">
+    <script src="{{ asset('https://cdn.jsdelivr.net/npm/flatpickr') }}"></script>
+    <body>
+    <link rel="stylesheet" href="{{ asset('regle.css') }}">
+    <main class="container">
+        <section class="row">
+            <div class="col-12">
+                <div class="centered-title-container">
+                <h1>Ajouter Service</h1>
+                </div>
+                {{ form_start(form) }}
+                {{ include('contenue_twig/_form.html.twig') }}
+                {# <div class="center">
+    <table>
+        <tr><button class="btn btn-primary">Save</button></tr>
+        <tr><a href="{{ path('service_db')}}" class="btn btn-primary">Show List</a></tr>
+    </table>
+</div> #}
+                <div class="center">
+                    <table>
+                        <tr>
+                            <td>
+                                <button class="btn btn-primary">Save</button>
+                            </td>
+                            <td style="margin-right: 10px;"> <!-- Ajouter une marge à droite pour l'espace horizontal -->
+                                <a href="{{ path('service_db')}}" class="btn btn-primary">Show List</a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <script>
+                    document.addEventListener('DOMContentLoaded', function () {
+                        flatpickr('.datepicker', {
+                            dateFormat: 'Y-m-d',
+                            // Autres options Flatpickr ici...
+                        });
+                    });
+                </script>
+                {{ form_end(form) }}
+            </div>
+        </section>
+    </main>
+    </body>
+{% endblock %}

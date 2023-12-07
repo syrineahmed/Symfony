@@ -1,0 +1,91 @@
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="{{ asset('regle.css') }}">
+<link rel="stylesheet" href="{{ asset('regl.css') }}">
+<table class="centred-table">
+    <tr>
+        <td>
+    <div class="form-group">
+        <div class="custom-label">
+        {{ form_label(forme.nomService) }}
+        </div>
+        {{ form_widget(forme.nomService) }}
+    </div>
+        </td>
+
+        <td>
+            <div class="form-group">
+                <div class="custom-label">
+                    {{ form_label(forme.dateAvis) }}
+                </div>
+
+                {{ form_widget(forme.dateAvis) }}
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+<div class="form-group">
+    <div class="custom-label">
+        {{ form_label(forme.idPatient) }}
+    </div>
+
+    {{ form_widget(forme.idPatient) }}
+</div>
+        </td>
+        <td>
+           <div class="center">
+               <div class="stars">
+                   <input type="radio" id="five" name="rate" value="5">
+                   <label for="five"></label>
+                   <input type="radio" id="four" name="rate" value="4">
+                   <label for="four"></label>
+                   <input type="radio" id="three" name="rate" value="3">
+                   <label for="three"></label>
+                   <input type="radio" id="two" name="rate" value="2">
+                   <label for="two"></label>
+                   <input type="radio" id="one" name="rate" value="1">
+                   <label for="one"></label>
+                   <span class="result"></span>
+               </div>
+           </div>
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    const stars = document.querySelectorAll('.stars input');
+                    const result = document.querySelector('.result');
+
+                    stars.forEach(star => {
+                        star.addEventListener('change', updateResult);
+                    });
+
+                    function updateResult() {
+                        const checkedStars = document.querySelector('.stars input:checked');
+                        if (checkedStars) {
+                            result.textContent = checkedStars.value;
+                            const hiddenInput = document.getElementById('commentaire_rating');
+                            hiddenInput.value = checkedStars.value;
+                        }
+                    }
+                });
+
+            </script>
+        </td>
+        <td>
+            <div style="display: none;">
+            {{ form_row(forme.note, { 'attr': {'class': 'hidden-input'}, 'id': 'commentaire_rating' }) }}
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+<div class="form-group">
+    <div class="custom-label">
+        {{ form_label(forme.commentaire) }}
+    </div>
+
+    {{ form_widget(forme.commentaire) }}
+</div>
+        </td>
+    </tr>
+</table>

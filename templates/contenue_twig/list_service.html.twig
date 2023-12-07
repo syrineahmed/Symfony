@@ -1,0 +1,92 @@
+{% extends 'base-bak.html.twig' %}
+{% block body %}
+    <link rel="stylesheet" href="{{ asset('reglee.css') }}">
+
+
+
+    <div class="table-container">
+
+    <div id="searchresult">
+
+    </div>
+        <table border="2">
+        <tr>
+
+            <th class="entete">Nom_Service</th>
+            <th class="entete">Description</th>
+            <th class="entete">Tarification</th>
+            <th class="entete">Ref_service</th>
+            <th class="entete">Disponibilité</th>
+            <th class="entete">Date</th>
+
+
+
+
+
+        </tr>
+
+
+        {% for service in services %}
+            <tbody>
+            <tr>
+
+
+                <td>{{ service.getNomcategorie }}</td>
+                <td> {{ service.getDescription }}</td>
+                <td>{{ service.getTarification }}</td>
+                <td>{{ service.getRefServices}}</td>
+                <td>{{ service.getDisponibilite}}</td>
+                <td>{{ service.getDate|date('Y-m-d')}}</td>
+
+
+            </tr>
+
+            </tbody>
+
+        {% endfor %}
+        <tr>
+            <div class="pagination-container">
+                {{ knp_pagination_render(services) }}
+            </div>
+        </tr>
+    </table>
+        <div class="text-center">
+            <table>
+                <tr>
+                    <a href="{{ path('new_service') }}" class="btn btn-primary">Ajouter Service</a>
+                    <a href="{{ path('comme_db') }}" class="btn btn-primary" style="margin-left: 10px;">Consulter liste des commentaires</a>
+
+                </tr>
+            </table>
+        </div>
+
+
+    <script src="{{ asset('https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js') }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function (){
+           $("#live-search").onkeyup(function (){
+            var input= $(this).val();
+            //alert(input);
+               if (input !=="") {
+                   $.ajax({
+                       url:"livesearch.php",
+                       method:"POST",
+                       data:{input:input},
+                       success:function (data){
+                           $("searchresult").html(data);
+                       }
+                   });
+               }else{
+                   $("searchresult").css("$display","none");
+               }
+         });
+        });
+
+    </script>
+</div>
+
+
+{% endblock %}
+
+
+

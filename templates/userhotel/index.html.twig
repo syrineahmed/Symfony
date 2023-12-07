@@ -1,0 +1,42 @@
+{% extends 'userhotel/front.html.twig' %}
+{% block main %}
+    {% block body %}
+        <div class="container">
+            <h1 class="text-center mt-5 mb-4">Hotels Disponibles</h1>
+
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Nom de l'Hôtel</th>
+                            <th scope="col">Nombre d'Étoiles</th>
+                            <th scope="col">Pays</th>
+                            <th scope="col">Nombre de Chambres</th>
+                            <th scope="col">Prix par Nuit</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for hotel in hotels %}
+                            <tr>
+                                <td>{{ hotel.nomHotel }}</td>
+                                <td>{{ hotel.nbEtoile }}</td>
+                                <td>{{ hotel.pays }}</td>
+                                <td>{{ hotel.nbChambre }}</td>
+                                <td>{{ hotel.prixNuit }} $</td>
+                                <td>
+                                    <a href="{{ path('app_userhotel_reserve', {'idHotel': hotel.idHotel}) }}"
+                                       class="btn btn-primary">Réserver</a>
+                                </td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="6" class="no-records text-center">Aucun hôtel disponible</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    {% endblock %}
+{% endblock %}

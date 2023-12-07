@@ -1,0 +1,33 @@
+
+{# templates/hotels/_form.html.twig #}
+
+{{ form_start(form, {'attr': {'class': 'my-form'}}) }}
+    <div class="form-group">
+        {{ form_label(form.nomHotel) }}
+        {{ form_widget(form.nomHotel, {'attr': {'class': 'form-control', 'placeholder': 'Hotel Name'}}) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.nbEtoile) }}
+        {{ form_widget(form.nbEtoile, {'attr': {'class': 'form-control', 'placeholder': 'Number of Stars'}}) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.pays) }}
+        {{ form_widget(form.pays, {'attr': {'class': 'form-control', 'placeholder': 'Country'}}) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.nbChambre) }}
+        {{ form_widget(form.nbChambre, {'attr': {'class': 'form-control', 'placeholder': 'Number of Rooms'}}) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.prixNuit) }}
+        {{ form_widget(form.prixNuit, {'attr': {'class': 'form-control', 'placeholder': 'Nightly Price'}}) }}
+    </div>
+
+    <button type="submit" class="btn btn-primary">
+        {{ button_label|default('Create') }}
+    </button>
+{{ form_end(form) }}

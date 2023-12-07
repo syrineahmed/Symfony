@@ -1,0 +1,102 @@
+table {
+    border: 2;
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    border: 2px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: plum;
+}
+
+tbody tr:nth-child(even) {
+    background-color: plum;
+}
+
+.entete {
+    background-color:purple;
+    color: white;
+    text-align: center;
+}
+.entet {
+    background-color:red;
+    color: black;
+    text-align: center;
+}
+
+a.button {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    color: #fff;
+    background-color: #337ab7;
+    border-color: #2e6da4;
+    text-decoration: none; /* Ajoutez cette propriété pour enlever le soulignement du lien */
+}
+/* Styles pour les boutons "Edit" et "Delete" */
+a.edit-button, a.delete-button {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    color: #fff;
+}
+
+a.edit-button {
+    background-color: #337ab7;
+    border-color: #2e6da4;
+}
+
+a.delete-button {
+    background-color: #337ab7; /* Utilisez la même couleur que le bouton "Edit" ou ajustez selon votre préférence */
+    border-color: #2e6da4;
+}
+
+a.edit-button:hover, a.delete-button:hover {
+    background-color: #286090;
+    border-color: #204d74;
+}
+
+.table-container {
+    overflow-x: auto;
+}
+
+.pagination-container {
+    text-align: right;
+    margin-top: 10px;
+}
+
+.centred-table {
+        margin: 0 auto; /* Cela centrer la table horizontalement */
+        text-align: center; /* Cela peut aider à centrer le contenu de la table */
+    }
+
+
+
+
+
+
+

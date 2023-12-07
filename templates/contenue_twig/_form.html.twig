@@ -1,0 +1,45 @@
+<link rel="stylesheet" href="{{ asset('regle.css') }}">
+<div class="form-group" >
+    <div class="custom-label">
+        {{ form_label(form.nomcategorie) }}
+    </div>
+    {{ form_widget(form.nomcategorie) }}
+</div>
+<div class="form-group">
+    <div class="custom-label">
+        {{ form_label(form.description) }}
+    </div>
+    {{ form_widget(form.description) }}
+</div>
+
+<div class="form-group">
+    <div class="custom-label">
+        {{ form_label(form.tarification) }}
+    </div>
+    {{ form_widget(form.tarification) }}
+</div>
+
+<div class="form-group">
+    <div class="custom-label">
+        {{ form_label(form.refServices) }}
+    </div>
+    {{ form_widget(form.refServices) }}
+</div>
+
+<div class="form-group">
+    <div class="row">
+        <div class="col">
+            {{ form_label(form.disponibilite, null, {'label_attr': {'style': 'color: #117a8b;font-weight: bold;'}}) }}
+        </div>
+        <div class="col">
+            {{ form_widget(form.disponibilite) }}
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <div class="custom-label">
+        {{ form_label(form.date) }}
+    </div>
+    {{ form_widget(form.date) }}
+</div>
+

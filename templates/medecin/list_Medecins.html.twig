@@ -1,0 +1,118 @@
+{% extends 'TempHamza/back.html.twig' %}
+
+{% block body  %}
+        
+            <div class="container-fluid px-4">
+                <h1 class="mt-4">GESTION DE MEDECIN</h1>
+                <ol class="breadcrumb mb-4">
+                    <li class="breadcrumb-item active">ADMIN</li>
+                </ol>
+                <div class="row">
+                    
+<div class="col-xl-3 col-md-6">
+    <button class="btn btn-primary w-100 mb-4" onclick="window.location.href='{{ path('list_patients') }}'">
+        <div class="card-body">Listes des Patients</div>
+        <div class="card-footer d-flex align-items-center justify-content-between">
+            <span class="small text-white">Plus de Détails</span>
+            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+        </div>
+    </button>
+</div>
+
+<div class="col-xl-3 col-md-6">
+    <button class="btn btn-primary w-100 mb-4" onclick="window.location.href='{{ path('add_patient') }}'">
+        <div class="card-body">Ajouter Patient</div>
+        <div class="card-footer d-flex align-items-center justify-content-between">
+            <span class="small text-white">Plus de Détails</span>
+            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+        </div>
+    </button>
+</div>
+
+<div class="col-xl-3 col-md-6">
+    <button class="btn btn-danger w-100 mb-4" onclick="window.location.href='{{ path('list_medecins') }}'">
+        <div class="card-body">Listes des Medecins</div>
+        <div class="card-footer d-flex align-items-center justify-content-between">
+            <span class="small text-white">Plus de Détails</span>
+            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+        </div>
+    </button>
+</div>
+
+
+<div class="col-xl-3 col-md-6">
+    <button class="btn btn-danger w-100" onclick="window.location.href='{{ path('add_medecin') }}'">
+        <div class="card-body">Ajouter Medecin</div>
+        <div class="card-footer d-flex align-items-center justify-content-between">
+            <span class="small text-white">Explore More</span>
+            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+        </div>
+    </button>
+</div>
+
+                
+                
+                    <div class="card-header">
+                        <i class="fas fa-table me-1"></i>
+                                           
+                    <form class="form-inline" action="{{ path('search_medecin') }}" method="GET" style="display: inline; margin-bottom: 800px; margin-top: 800px;">
+    <div class="input-group">
+        <input type="text" class="form-control" id="searchInput" name="searchInput" placeholder="Search by name" style="max-width: 500px; height: 38px; line-height: 35px; margin-right: 10px;">
+        <div class="input-group-append">
+            <button type="submit" class="btn btn-primary mb-2">Search</button>
+        </div>
+ 
+    </div>
+    
+    
+</form>
+
+                    <div class="card-body">
+                        <table id="datatablesSimple">
+                            </tr>
+                            </thead>
+                            <tfoot>
+                            <tr>
+                          <table class="table table-bordered mt-4">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Last Name</th>
+                                    <th>First Name</th>
+                                    <th>specialite</th>
+                                    <th>pays</th>
+                                    <th>graduation date</th>
+                                    <th>diploma number</th>
+                                    <th>mail</th>
+                                    <th>password</th>
+                                    <th>action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                               
+    {% for medecin in medecins %}
+    <tr>
+        <td>{{ medecin.id }}</td>
+        <td>{{ medecin.nom }}</td>
+        <td>{{ medecin.prenom }}</td>
+        <td>{{ medecin.specialite }}</td>
+        <td>{{ medecin.pays }}</td>
+        <td>{{ medecin.dategrad | date }}</td>
+        <td>{{ medecin.numbergrad }}</td>
+        <td>{{ medecin.email }}</td>
+        <td>{{ medecin.motdepasse }}</td>
+        <td>
+            <a href="{{ path('delete_medecin', {id: medecin.id}) }}" class="btn btn-danger btn-sm">Delete</a>
+            <a href="{{ path('edit_medecin', {id: medecin.id}) }}" class="btn btn-primary btn-sm">Update</a>
+        </td>
+    </tr>
+    {% endfor %}
+</tbody>
+
+                            
+</table>
+
+{% endblock %}
+                        
+
+        

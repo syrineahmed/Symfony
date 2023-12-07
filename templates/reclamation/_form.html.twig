@@ -1,0 +1,30 @@
+{{ form_start(form) }}
+
+<div class="form-group">
+    {{ form_label(form.sujet, 'Sujet', {'label_attr': {'class': 'custom-label'}}) }}
+    {{ form_widget(form.sujet, {'attr': {'class': 'form-control custom-input', 'placeholder': 'Enter your sujet'}}) }}
+</div>
+
+<div class="form-group">
+    {{ form_label(form.email, 'Email', {'label_attr': {'class': 'custom-label'}}) }}
+    {{ form_widget(form.email, {'attr': {'class': 'form-control custom-input', 'placeholder': 'Enter your email'}}) }}
+</div>
+
+<div class="form-group">
+    {{ form_label(form.description, 'Description', {'label_attr': {'class': 'custom-label'}}) }}
+    {{ form_widget(form.description, {'attr': {'class': 'form-control custom-input', 'placeholder': 'Enter your description'}}) }}
+</div>
+
+<div class="form-group">
+    {{ form_label(form.etat, 'Etat', {'label_attr': {'class': 'custom-label'}}) }}
+    {{ form_widget(form.etat, {'attr': {'class': 'form-control custom-input', 'placeholder': 'Enter your etat'}}) }}
+</div>
+
+<div class="form-group">
+    {{ form_label(form.date, 'Date', {'label_attr': {'class': 'custom-label'}}) }}
+    {{ form_widget(form.date, {'attr': {'class': 'form-control custom-input', 'placeholder': 'Enter your date'}}) }}
+</div>
+
+<button class="btn btn-primary">Save</button>
+
+{{ form_end(form) }}

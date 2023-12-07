@@ -1,0 +1,38 @@
+{{ form_start(form, {'attr': {'class': 'my-form'}}) }}
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <div class="form-group">
+                {{ form_label(form.nomAirways, 'Airways Name') }}
+                {{ form_widget(form.nomAirways, {'attr': {'class': 'form-control', 'placeholder': 'Enter Airways Name'}}) }}
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                {{ form_label(form.nbBillet, 'Number of Tickets') }}
+                {{ form_widget(form.nbBillet, {'attr': {'class': 'form-control', 'placeholder': 'Enter Number of Tickets'}}) }}
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <div class="form-group">
+                {{ form_label(form.prixBillet, 'Ticket Price') }}
+                {{ form_widget(form.prixBillet, {'attr': {'class': 'form-control', 'placeholder': 'Enter Ticket Price'}}) }}
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                {{ form_label(form.dateDepart, 'Departure Date') }}
+                {{ form_widget(form.dateDepart, {'attr': {'class': 'form-control', 'placeholder': 'Enter Departure Date'}}) }}
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group mb-3">
+        {{ form_label(form.destination, 'Destination') }}
+        {{ form_widget(form.destination, {'attr': {'class': 'form-control', 'placeholder': 'Enter Destination'}}) }}
+    </div>
+
+    <button type="submit" class="btn btn-primary">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}

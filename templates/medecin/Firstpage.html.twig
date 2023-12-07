@@ -1,0 +1,5 @@
+                {% if app.user %}
+                    <div class="alert alert-success" role="alert">
+                        You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_login') }}">Logout</a>
+                    </div>
+                {% endif %}

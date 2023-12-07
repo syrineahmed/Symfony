@@ -1,0 +1,90 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+
+add_patient:
+    path: /add_patient
+    controller: 'App\Controller\PatientController::addPatient'
+
+list_patients:
+    path: /list_patients
+    controller: 'App\Controller\PatientController::listPatients'
+
+first_page:
+    path: /firstpage
+    controller: 'App\Controller\MedecinController::firstPageAction'
+# config/routes.yaml
+
+app_reclamation_index:
+    path: /reclamation
+    controller: 'App\Controller\ReclamationController::index'
+    methods: ['GET', 'POST']
+
+app_reclamation_index1:
+    path: /reclamation/test
+    controller: 'App\Controller\ReclamationController::index2'
+    methods: ['GET']
+
+app_reclamation_new:
+    path: /reclamation/new
+    controller: 'App\Controller\ReclamationController::new'
+    methods: ['GET', 'POST']
+
+app_reclamation_show:
+    path: /reclamation/show/{idRec}
+    controller: 'App\Controller\ReclamationController::show'
+    methods: ['GET']
+
+app_reclamation_edit:
+    path: /reclamation/edit/rec/{idRec}
+    controller: 'App\Controller\ReclamationController::edit'
+    methods: ['GET', 'POST']
+
+app_reclamation_delete:
+    path: /reclamation/delete/{idRec}
+    controller: 'App\Controller\ReclamationController::delete'
+    methods: ['POST']
+
+app_reclamation_delete2:
+    path: /reclamation/remove/{idRec}
+    controller: 'App\Controller\ReclamationController::delete2'
+    methods: ['GET', 'POST']
+
+reclamation_search:
+    path: /reclamation/search
+    controller: 'App\Controller\ReclamationController::searchAction'
+    methods: ['GET']
+
+# Add any other routes you might have...
+app_home:
+    path: /am
+    controller: App\Controller\ServiceController::index
+
+new_service:
+    path: /ajouttyy
+    controller: App\Controller\ServiceController::Ajouter
+new_commm:
+    path: /ajouttee
+    controller: App\Controller\CommentaireController::Ajoutte
+    #service_pdf:
+    # path: /pdff
+    #controller: App\Controller\ServiceController::generatePdfPersonne
+comme_db:
+    path: /comme
+    controller: App\Controller\CommentaireController::read
+
+edit_service:
+    path: /modifyyy/{id}
+    controller: App\Controller\ServiceController::edit
+
+service_db:
+    path: /servicc
+    controller: App\Controller\ServiceController::read
+
+delete_service:
+    path: /delett/{id}
+    controller: App\Controller\ServiceController::delete
+
+cherch_service:
+    path: /cherchh
+    controller: App\Controller\ServiceController::chercher

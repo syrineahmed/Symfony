@@ -1,0 +1,154 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}ReponseReclamation index{% endblock %}
+
+{% block body %}
+
+    <div class="container mt-4">
+        <h1 class="mb-4">Reponse de la Reclamation</h1>
+        <div class="input-group custom-search-form">
+            <input type="text" id="search" class="form-control" placeholder="Rechercher recyclage">
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered">
+                <thead class="thead-dark">
+                <tr>
+                    <th>Sujet</th>
+                    <th>Etat</th>
+                    <th>Date</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for reponse_reclamation in reponse_reclamations %}
+                    <tr>
+                        <td>{{ reponse_reclamation.sujet }}</td>
+                        <td>{{ reponse_reclamation.etat }}</td>
+                        <td>{{ reponse_reclamation.date ? reponse_reclamation.date|date('Y-m-d') : '' }}</td>
+                        <td>
+                            <div class="btn-group" role="group">
+                                <button class="btn btn-info">
+                                    <a href="{{ path('app_reponse_reclamation_show', {'idReponse': reponse_reclamation.idReponse}) }}" style="text-decoration: none; color: inherit;">Show</a>
+                                </button>
+                                <button class="btn btn-success">
+                                    <a href="{{ path('app_reponse_reclamation_edit', {'idReponse': reponse_reclamation.idReponse}) }}" style="text-decoration: none; color: inherit;">Edit</a>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="4">No result found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="mt-3">
+            <button class="btn btn-primary">
+                <a href="{{ path('app_reclamation_index') }}" style="text-decoration: none; color: inherit;">Liste de Reclamation</a>
+            </button>
+        </div>
+
+        <div class="pagination justify-content-center" style="margin-top: 20px;">
+            {% do  reponse_reclamations.SetPageRange(2) %}
+            {{ knp_pagination_render( reponse_reclamations, "pagination.html.twig") }}
+        </div>
+    </div>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function() {
+            var searchRequest = null;
+            var originalTableBody = $(".table tbody").html(); // Store the original table content
+
+            $("#search").keyup(function() {
+                var minlength = 1;
+                var that = this;
+                var value = $(this).val();
+                var tableBody = $(".table tbody");
+
+                if (value.length >= minlength) {
+                    // Abort the previous request if it exists
+                    if (searchRequest != null) {
+                        searchRequest.abort();
+                    }
+
+
+
+                    // Start a new AJAX request
+                    searchRequest = $.ajax({
+                        type: "GET",
+                        url: "{{ path('reponse_recherche_2') }}",
+                        data: {
+                            'k': value
+                        },
+
+                        dataType: "json", // Assuming your response is JSON
+                        success: function(result) {
+                            // Check if the value is still the same
+                            //if (value === $(that).val()) {
+                                // Clear the table body
+                               // tableBody.empty();
+                            if (result.reponse_reclamations.length === 0) {
+                                tableBody.html('<tr><td colspan="3">Aucun résultat trouvé</td></tr>');
+                            } else {
+                                tableBody.empty();
+                                   // ... le reste de votre code pour ajouter les résultats de la recherche à la table
+
+
+
+
+                                // Append the search results to the table
+                                $.each(result.reponse_reclamations, function(index, reponse) {
+                                    console.log(searchRequest);
+
+                                    tableBody.append('<tr>' +
+                                        '<td>' + reponse[0] + '</td>' +
+                                        '<td>' + reponse[1] + '</td>' +
+                                        '<td>' + reponse[2] + '</td>' +
+
+                                        '<td>' +
+                                        '<div class="btn-group" role="group" aria-label="Reclamation Actions">' +
+                                        '<div class="btn-container">' +
+                                        '<button class="btn btn-gradient-info btn-rounded btn-fw">' +
+                                        '<a href="/reponse/show/'+reponse[3]+'" style="text-decoration: none; color: inherit;">Show</a>' +
+                                        '</button>' +
+                                        '</div>' +
+                                        '<div class="btn-container">' +
+                                        '<button class="btn btn-gradient-success btn-rounded btn-fw">' +
+                                        '<a href="/reponse/edit/{idReponse}/'+reponse[3]+'" style="text-decoration: none; color: inherit;">Edit</a>' +
+                                        '</button>' +
+                                        '</div>' +
+                                          '<div class="btn-container">' +
+                                            {# '<button class="btn btn-gradient-info btn-rounded btn-fw">' +
+                                            '<a href="/reponse/delete/'+reclamation[5]+'" style="text-decoration: none; color: inherit;">Reponse</a>' +
+                                        '</button>' +
+                                        '</div>' +
+                                        '<div class="btn-container">' +
+                                        '<button class="btn btn-gradient-info btn-rounded btn-fw">' +
+                                        '<a href="/reclamation/remove/'+reclamation[5]+'" style="text-decoration: none; color: inherit;">Delete</a>' +
+                                        '</button>' +
+                                        '</div>' +
+
+                                        '</div>' +#}
+                                        '<td>' +
+                                        '<div class="btn-group" role="group" aria-label="Reclamation Actions">' +
+                                        // ... Your other buttons ...
+                                        '</div>' +
+                                        '</td>' +
+                                        '</tr>');
+                                });
+                            }
+                        }
+                    });
+                } else {
+                    // If the search input is empty, restore the original table content
+                    tableBody.html(originalTableBody);
+                }
+            });
+        });
+    </script>
+
+{% endblock %}

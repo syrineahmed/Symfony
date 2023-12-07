@@ -1,0 +1,64 @@
+{% extends 'TempHamza/back.html.twig' %}
+
+{% block body %}
+        <h2 class="mb-4">UPDATE PATIENT</h2>
+
+        {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+        
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Nom</label>
+            <div class="col-sm-10">
+                {{ form_row(form.nom, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Prénom</label>
+            <div class="col-sm-10">
+                {{ form_row(form.prenom, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Date de Naissance</label>
+            <div class="col-sm-10">
+                {{ form_row(form.datenai, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Numéro d'Assurance</label>
+            <div class="col-sm-10">
+                {{ form_row(form.numassu, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Maladie</label>
+            <div class="col-sm-10">
+                {{ form_row(form.maladie, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Email</label>
+            <div class="col-sm-10">
+                {{ form_row(form.emailp, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Mot de passe</label>
+            <div class="col-sm-10">
+                {{ form_row(form.password, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-sm-10 offset-sm-2">
+                {{ form_row(form.Enregistrer, {'attr': {'class': 'btn btn-primary'}}) }}
+            </div>
+        </div>
+
+        {{ form_end(form) }}
+    {% endblock %}

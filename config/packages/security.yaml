@@ -1,0 +1,47 @@
+# security.yaml
+
+security:
+    encoders:
+        App\Entity\Medecin:
+            algorithm: plaintext
+        Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
+        App\Entity\Patient:
+            algorithm: plaintext  # Use plaintext for the Patient entity
+
+    enable_authenticator_manager: true
+
+    providers:
+        medecin_provider:
+            id: App\Security\MedecinUserProvider
+        patient_provider:
+            id: App\Security\PatientUserProvider
+
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        main:
+            lazy: true
+            logout:
+                path: app_logout
+            switch_user:
+                provider: medecin_provider  # Specify the provider for switch_user
+            custom_authenticators:
+                - App\Security\LoginFormAuthenticator
+                - App\Security\PatientLoginFormAuthenticator
+            entry_point: App\Security\PatientLoginFormAuthenticator  # Choose one of your authenticators
+
+    # ... rest of the configuration
+
+    access_control:
+        # - { path: ^/admin, roles: ROLE_ADMIN }
+        # - { path: ^/profile, roles: ROLE_USER }
+
+when@test:
+    security:
+        password_hashers:
+            Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface:
+                algorithm: auto
+                cost: 4 # Lowest possible value for bcrypt
+                time_cost: 3 # Lowest possible value for argon
+                memory_cost: 10 # Lowest possible value for argon

@@ -1,0 +1,137 @@
+{% extends 'admin/base.html.twig' %}
+{% block body %}
+
+    <div class="row">
+        <div class="col-md-4 stretch-card grid-margin">
+            <div class="card bg-gradient-danger card-img-holder text-white">
+                <div class="card-body">
+                    <img src="{{ asset('admin/images/dashboard/circle.svg') }}" class="card-img-absolute" alt="circle-image" />
+                    <h4 class="font-weight-normal mb-3">Numb Reclamation  <i class="mdi mdi-content-paste"></i>
+                    </h4>
+                    <h2 class="mb-5">{{ reclamationsCount }}</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 stretch-card grid-margin">
+            <div class="card bg-gradient-info card-img-holder text-white">
+                <div class="card-body">
+                    <img src="{{ asset('admin/images/dashboard/circle.svg') }}" class="card-img-absolute" alt="circle-image" />
+                    <h4 class="font-weight-normal mb-3">Reclamation non traité  <i class="mdi mdi-close-box"></i>
+                    </h4>
+                    <h2 class="mb-5">{{ countNonTraiteReclamations}}</h2>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 stretch-card grid-margin">
+            <div class="card bg-gradient-success card-img-holder text-white">
+                <div class="card-body">
+                    <img src="{{ asset('admin/images/dashboard/circle.svg') }}" class="card-img-absolute" alt="circle-image" />
+                    <h4 class="font-weight-normal mb-3">Reclamation traité  <i class="mdi mdi-checkbox-multiple-marked
+"></i>
+                    </h4>
+                    <h2 class="mb-5">{{ countTraiteReclamations}}</h2>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-7 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <div class="clearfix">
+                        <h4 class="card-title float-left">Visit And Sales Statistics</h4>
+                        <div id="visit-sale-chart-legend" class="rounded-legend legend-horizontal legend-top-right float-right"></div>
+                    </div>
+                    <canvas id="visit-sale-chart" class="mt-4"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-5 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Statistique</h4>
+                    <!-- Change the ID here -->
+                    <canvas id="custom-traffic-chart"></canvas>
+                    <div id="percentage-display">
+                        <p>Percentage Non Traite: {{ percentageNonTraite }}%</p>
+                        <p>Percentage Traite: {{ percentageTraite }}%</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+    </div>
+{# stat #}
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Change the ID here
+            var ctx = document.getElementById('custom-traffic-chart').getContext('2d');
+            var data = {
+                labels: ['Non Traite', 'Traite'],
+                datasets: [{
+                    data: [{{ countNonTraiteReclamations }}, {{ countTraiteReclamations }}],
+                    backgroundColor: [
+                        'rgba(254, 112, 150, 0.5)', // Semi-transparent colors
+                        'rgba(255, 191, 150, 0.5)',
+                    ],
+                    borderColor: [
+                        'rgba(254, 112, 150, 1)',
+                        'rgba(255, 191, 150, 1)',
+                    ],
+                    borderWidth: 2
+                }]
+            };
+            var myChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: data,
+                options: {
+                    responsive: true,
+                    cutoutPercentage: 60,
+                    legend: {
+                        position: 'bottom',
+                    },
+                    animation: {
+                        animateScale: true,
+                        animateRotate: true
+                    },
+                    tooltips: {
+                        callbacks: {
+                            label: function (tooltipItem, data) {
+                                return data.labels[tooltipItem.index] + ': ' + data.datasets[0].data[tooltipItem.index] ;
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: false,
+                        title: {
+                            display: true,
+                            text: 'Your Chart Title',
+                            position: 'top',
+                            fontSize: 16,
+                            fontColor: 'white'
+                        }
+                    },
+                    // Add the gradient background
+                    plugins: [{
+                        beforeDraw: function(chart) {
+                            var ctx = chart.ctx;
+                            var chartArea = chart.chartArea;
+
+                            var gradient = ctx.createLinearGradient(0, chartArea.bottom, 0, chartArea.top);
+                            gradient.addColorStop(0, '#fe7096');
+                            gradient.addColorStop(1, '#ffbf96');
+
+                            ctx.fillStyle = gradient;
+                            ctx.fillRect(chartArea.left, chartArea.top, chartArea.right - chartArea.left, chartArea.bottom - chartArea.top);
+                        }
+                    }]
+                }
+            });
+        });
+    </script>
+{% endblock %}

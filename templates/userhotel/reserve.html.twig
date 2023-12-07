@@ -1,0 +1,109 @@
+{% extends 'userhotel/front.html.twig' %}
+{% block main %}
+    <div class="reservation-container">
+        <div class="form-center">
+            <h1 class="mb-4">RESERVATION D'HOTEL</h1>
+
+            {{ form_start(form) }}
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        {{ form_row(form.userNom, {'attr': {'class': 'form-control', 'placeholder': 'Nom'}}) }}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        {{ form_row(form.userPrenom, {'attr': {'class': 'form-control', 'placeholder': 'Prénom'}}) }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                {{ form_row(form.numpassport, {'attr': {'class': 'form-control', 'placeholder': 'Numéro de passeport'}}) }}
+            </div>
+
+            <div class="mb-3">
+                {{ form_row(form.nomHotel, {'attr': {'class': 'form-control', 'placeholder': 'Nom de l\'hôtel'}}) }}
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        {{ form_row(form.pays, {'attr': {'class': 'form-control', 'placeholder': 'Pays'}}) }}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        {{ form_row(form.chambreReservee, {'attr': {'class': 'form-control', 'placeholder': 'Nombre de chambres réservées'}}) }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                {{ form_row(form.nbNuits, {'attr': {'class': 'form-control', 'placeholder': 'Nombre de nuits'}}) }}
+            </div>
+
+            <div class="mb-3">
+                {{ form_row(form.factureHotel, {'attr': {'class': 'form-control', 'readonly': 'readonly'}}) }}
+            </div>
+
+            <button type="submit" class="btn btn-primary">Réserver</button>
+            
+            {{ form_end(form) }}
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#userhotel_chambreReservee, #userhotel_nbNuits').change(function () {
+                var nbChambres = $('#userhotel_chambreReservee').val();
+                var nbNuits = $('#userhotel_nbNuits').val();
+
+                // Replace this part with the logic to get the price per night
+                var prixNuit = /* Logic to get the price per night */;
+
+                var facture = nbChambres * nbNuits * prixNuit;
+
+                $('#userhotel_factureHotel').val(facture);
+            });
+        });
+    </script>
+
+    <style>
+        .reservation-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .form-center {
+            width: 600px; /* Adjust the width as needed */
+            text-align: center;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-center h1 {
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+    </style>
+{% endblock %}

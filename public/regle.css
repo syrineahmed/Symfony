@@ -1,0 +1,75 @@
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10vh; /* Cela assure que le bouton est centré verticalement sur la page */
+}
+
+
+.custom-label label {
+    color: #117a8b;
+    font-weight: bold;
+}
+.contain {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+
+.centered-title {
+    text-align: center;
+    margin-top: 5px;
+    color: cornflowerblue;
+}
+
+
+.centered-title-container {
+    text-align: center;
+    padding: 15px;
+    border: 2px solid deeppink;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+    display: block; /* Changer de "inline-block" à "block" */
+    margin: 0 auto; /* Ajouter cette ligne pour centrer horizontalement */
+    max-width: 400px; /* Ajouter cette ligne pour définir une largeur maximale */
+}
+
+.entete {
+    color: #117a8b;
+
+}
+.entetee {
+    color: darkslategray;
+
+}
+
+.nombre {
+    color: #117a8b;
+    text-align: center;
+    font-weight: bold;
+}
+.detail {
+    color: #117a8b;
+    text-align: center;
+
+}
+.taille {
+
+    width: 500px;
+
+}
+.style_table{
+    margin-top: 20px;
+}
+.bout{
+    margin-top: 20px;
+}
+.dropdown-datepicker .datepicker-dropdown {
+    top: 100% !important;
+    bottom: auto !important;
+}

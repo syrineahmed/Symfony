@@ -1,0 +1,47 @@
+{% extends 'front-base.html.twig' %}
+{% block title %}Ajouter Commentaire{% endblock %}
+
+{% block body %}
+<link rel="stylesheet" href="{{ asset('https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css') }}">
+<script src="{{ asset('https://cdn.jsdelivr.net/npm/flatpickr') }}"></script>
+<body class="contain">
+<link rel="stylesheet" href="{{ asset('regle.css') }}">
+<main class="container">
+    <section class="row justify-content-center align-items-center"> {# Ajout des classes pour centrer le contenu #}
+        <div class="col-12">
+            <h1 class="centered-title" style="margin-top: 20px;">Votre Avis</h1>
+            {{ form_start(forme) }}
+            {{ include('contenue_front/CForm.html.twig') }}
+
+            <div class="center text-center"> {# Ajout des classes pour centrer le bouton #}
+                <button class="btn btn-primary">ADD</button>
+            </div>
+
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    flatpickr('.datepicker', {
+                        dateFormat: 'Y-m-d',
+                        // Autres options Flatpickr ici...
+                    });
+                });
+            </script>
+            {{ form_end(forme) }}
+            {% if form_errors(forme) %}
+                <div class="alert alert-danger">
+                    {{ form_errors(forme) }}
+                </div>
+            {% endif %}
+        </div>
+    </section>
+</main>
+</body>
+    <tr>
+        <td colspan="2">
+            <button class="btn btn-primary">Edit</button>
+            <a href="{{ path('comme_db')}}" class="btn btn-primary">Consulter</a>
+        </td>
+    </tr>
+    {#
+<a href="{{ path('comme_db') }}" style="display: inline-block; padding: 6px 12px; margin-bottom: 0; font-size: 14px; font-weight: 400; line-height: 1.42857143; text-align: center; white-space: nowrap; vertical-align: middle; cursor: pointer;  border-radius: 4px; color: #fff; background-color: #337ab7; border-color: #2e6da4;">Consulter List</a>
+    #}
+    {% endblock %}

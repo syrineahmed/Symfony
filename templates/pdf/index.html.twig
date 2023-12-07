@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Réservation</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+
+        h1 {
+            color: #007bff;
+            text-align: center;
+        }
+
+        .user-details {
+            border: 1px solid #007bff;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            margin: 0 auto;
+            box-sizing: border-box;
+        }
+
+        p {
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        strong {
+            color: #007bff;
+        }
+
+        img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .thank-you {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 18px;
+            color: #28a745;
+        }
+    </style>
+</head>
+<body>
+    <h1>Réservation</h1>
+    <div class="user-details">
+        <!-- You can include your image here if needed -->
+        <img src="{{ asset('img/logo.svg') }}" alt="logo">
+        <p><strong>Numéro de Passport :</strong> {{ User.getNumpassport() }}</p>
+        <p><strong>Nom :</strong> {{ User.getUserNom() }}</p>
+        <p><strong>Prénom :</strong> {{ User.getUserPrenom() }}</p>
+        <p><strong>Nom de l'hôtel :</strong> {{ User.getNomHotel() }}</p>
+        <p><strong>Pays :</strong> {{ User.getPays() }}</p>
+        <p><strong>Nombre de chambres réservées :</strong> {{ User.getChambreReservee() }}</p>
+        <p><strong>Facture de l'hôtel :</strong> {{ User.getFactureHotel() }}</p>
+        <!-- Ajoutez plus de champs au besoin -->
+    </div>
+    <div class="thank-you">
+        MedFly vous remercie pour votre confiance et vous souhaite un prompt rétablissement.
+    </div>
+</body>
+</html>

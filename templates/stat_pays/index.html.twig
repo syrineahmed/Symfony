@@ -1,0 +1,82 @@
+{% extends 'YassineTemp/back.html.twig' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graphique pays les plus visitées</title>
+    <!-- Include Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* CSS styles for better layout */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-top: 20px;
+        }
+        canvas {
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Graphique des pays les plus visités</h1>
+        <canvas id="paysChart" width="800" height="400"></canvas>
+    </div>
+
+    <script>
+        // Retrieve data from Symfony and store it in a JavaScript variable
+        const data = {{ userHotelByObject | json_encode | raw }};
+
+        // Extract labels and values for the chart
+        const labels = data.map(item => item.pays);
+        const values = data.map(item => item.countPays);
+
+        // Create a context for the chart
+        const ctx = document.getElementById('paysChart').getContext('2d');
+
+        // Create the chart
+        const chart = new Chart(ctx, {
+            type: 'bar', // Choose the chart type (bar, line, pie, etc.)
+            data: {
+                labels: labels, // Use labels as chart labels
+                datasets: [{
+                    label: 'Nombre de visiteurs par pays',
+                    data: values, // Use corresponding values
+                    backgroundColor: 'rgba(75, 192, 192, 0.6)', // Background color
+                    borderColor: 'rgba(75, 192, 192, 1)', // Border color
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true // Start y-axis from 0
+                    }
+                }
+                // Additional chart configurations if needed
+            }
+        });
+    </script>
+</body>
+</html>
+
+{% endblock %}

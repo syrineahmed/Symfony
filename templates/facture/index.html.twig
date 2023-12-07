@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Facture index{% endblock %}
+
+{% block body %}
+    <h1>Facture index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>NumPassport</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Destination</th>
+                <th>NomHotel</th>
+                <th>NomCompagnie</th>
+                <th>Montant</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for facture in factures %}
+            <tr>
+                <td>{{ facture.numPassport }}</td>
+                <td>{{ facture.nom }}</td>
+                <td>{{ facture.prenom }}</td>
+                <td>{{ facture.destination }}</td>
+                <td>{{ facture.nomHotel }}</td>
+                <td>{{ facture.nomCompagnie }}</td>
+                <td>{{ facture.montant }}</td>
+                <td>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

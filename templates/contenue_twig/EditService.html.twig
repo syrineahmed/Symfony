@@ -1,0 +1,35 @@
+{% extends 'base-bak.html.twig' %}
+{% block body %}
+    <!-- Ajoutez ces lignes à votre modèle de base ou directement à votre modèle actuel -->
+    <link rel="stylesheet" href="{{ asset('https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css') }}">
+    <script src="{{ asset('https://cdn.jsdelivr.net/npm/flatpickr') }}"></script>
+
+    <link rel="stylesheet" href="{{ asset('regle.css') }}">
+
+    <div class="container">
+        {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+        {{ include('contenue_twig/_form.html.twig') }}
+
+        <div class="center">
+            <table>
+                <tr>
+                    <td colspan="2">
+                        <button class="btn btn-primary">Edit</button>
+                        <a href="{{ path('service_db')}}" class="btn btn-primary">Retour</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <!-- Ajoutez ce script à votre modèle -->
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                flatpickr('.datepicker', {
+                    dateFormat: 'Y-m-d',
+                    // Autres options Flatpickr ici...
+                });
+            });
+        </script>
+
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

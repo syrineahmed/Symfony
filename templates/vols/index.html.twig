@@ -1,0 +1,53 @@
+{% extends 'YassineTemp/back.html.twig' %}
+
+{% block title %}Gestion Des Vols {% endblock %}
+
+{% block body %}
+    <div class="container mt-4">
+        <h1 class="mb-4">Vols Index</h1>
+        <div class="row mb-4">
+        <div class="col-md-6">
+            {{ form_start(searchForm) }}
+            <div class="input-group">
+                {{ form_widget(searchForm.search, {'attr': {'class': 'form-control', 'placeholder': 'Rechercher par nom de Compagnie'}}) }}
+                <div class="input-group-append">
+                    <button type="submit" class="btn btn-primary">Rechercher</button>
+                </div>
+            </div>
+            {{ form_end(searchForm) }}
+        </div>
+    </div>
+        <table class="table table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Nom Airways</th>
+                    <th scope="col">Nb Billet</th>
+                    <th scope="col">Prix Billet</th>
+                    <th scope="col">Date Depart</th>
+                    <th scope="col">Destination</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for vol in vols %}
+                <tr>
+                    <td>{{ vol.nomAirways }}</td>
+                    <td>{{ vol.nbBillet }}</td>
+                    <td>{{ vol.prixBillet }}</td>
+                    <td>{{ vol.dateDepart|date('Y-m-d H:i:s') }}</td>
+                    <td>{{ vol.destination }}</td>
+                    <td>
+                        <a href="{{ path('app_vols_edit', {'idVol': vol.idVol}) }}" class="btn btn-warning btn-sm">Edit</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="6" class="text-center">No records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <a href="{{ path('app_vols_new') }}" class="btn btn-primary">Create New</a>
+    </div>
+{% endblock %}
